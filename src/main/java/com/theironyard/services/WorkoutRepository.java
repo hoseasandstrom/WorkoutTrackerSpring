@@ -17,6 +17,6 @@ public interface WorkoutRepository  extends CrudRepository<Workout, Integer> {
     public Iterable<Workout> findByRatingGreaterThanEqual(int rating);
 
 
-    @Query("SELECT w FROM Workout w WHERE w.note LIKE ?1%")
-    public Iterable<Workout> searchNote(String note);
+    //@Query("SELECT w FROM Workout w WHERE w.note LIKE ?1%")
+    //public Iterable<Workout> searchNote(String note);
 }
