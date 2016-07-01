@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1><center>Workout Tracker</center></h1>
+<br>
+{{^user}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Username" name="username"/>
+    <input type="password" placeholder="Password" name="password"/>
+    <button type="submit">Login</button>
+</form>
+<form action="/logout" method="post" style="display: inline block">
+    <button type="submit">Logout</button>
+</form>
+{{/user}}
+
+{{#username}}
+You are logged in in as:<strong>{{name}}</strong>
+{{/user}}
+
+<table>
+    <th><a href="/">All</a></th>
+    <th><a href="/?movement=deadlift">Deadlift</a></th>
+    <th><a href="/?movement=backsquat">Back Squat</a></th>
+    <th><a href="/?movement=shoulderpress">Shoulder Press</a></th>
+    <th><a href="/?movement=pullup">Pull Up</a></th>
+</table>
+
+</form>
+
+<br><br>
+
+<form action="/add-workout" method="post">
+    <input type="text" placeholder="Name your Workout" name="workoutname"/>
+
+    <select name="movement">
+        <option selected disabled>Main Movement</option>
+        <option value="deadlift">Deadlift</option>
+        <option value="backsquat">Backsquat</option>
+        <option value="shoulderpress">Shoulder Press</option>
+        <option value="pullup">Pull Up</option>
+    </select>
+
+    <input type="text" name="reps" placeholder="Enter rep scheme"/>
+
+    <select name="location">
+        <option selected disabled>Training Location</option>
+        <option value="Big-Box">Big Box Gym</option>
+        <option value="CrossFit-Affiliate">CrossFit Affiliate</option>
+        <option value="Garage-Gym">Garage Gym</option>
+    </select>
+
+    <input type="number" placeholder="Rate Your Training (1-10)" name="rating"/>
+
+    <input type="text" placeholder="Enter Notes:" name="note"/>
+
+    <input type="datetime-local" name="date" hiddenvalue="{{now}}"/>
+
+    <button type="submit">Do it!</button>
+</form>
+
+<table>
+    <thead>
+    <th>Name of Workout</th>
+    <th>Primary Movement</th>
+    <th>Rep Scheme(reps then sets)</th>
+    <th>Training Location</th>
+    <th>How the Workout was Rated</th>
+    <th>Training Notes</th>
+    <th>Date</th>
+    </thead>
+    {{#workouts}}
+    <tr>
+        <td>{{workoutname}}</td>
+        <td>{{movement}}</td>
+        <td>{{reps}}</td>
+        <td>{{location}}</td>
+        <td>{{rating}}</td>
+        <td>{{note}}</td>
+        <td>{{date}}</td>
+    </tr>
+    {{/workouts}}
+
+</table>
+
+</body>
+</html>
